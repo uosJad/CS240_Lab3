@@ -138,7 +138,7 @@ public class Inventory {
 	 * @param a
 	 * @return
 	 */
-	public int[] getAgeArray(StackInterface<Ingredient> a){
+	public int[] getAgeArray(StackInterface<? extends Ingredient> a){
 		Ingredient[] temp = a.toArray();
 		int[] ages = new int[temp.length];
 		for (int i = 0; i < temp.length; i++){
@@ -233,7 +233,7 @@ public class Inventory {
 		Random rand = new Random();
 		int food;
 		for (int i = 0; i < number; i++){
-			food = rand.nextInt(5);
+			food = rand.nextInt(6);
 			if (food == 0){ // bun
 				bunStack.push(new Bun());
 			}
@@ -256,6 +256,7 @@ public class Inventory {
 	}
 	
 	public void resetStats(){
+		
 		wasteCheese = 0;
 		wasteBun = 0;
 		wastePatty = 0;

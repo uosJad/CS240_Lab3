@@ -13,7 +13,7 @@ public final class StackArray<T> implements StackInterface<T>{
 	private static final int DEFAULT_SIZE = 10;
 	
 	public StackArray(){
-		this(DEFAULT_SIZE);
+		this(10000000);
 	}
 	
 	public StackArray(int s){
@@ -83,7 +83,7 @@ public final class StackArray<T> implements StackInterface<T>{
 		for (int i = 0; i < arr.length; i++){
 			temp[i] = arr[i];
 		}
-		return temp;
+		return arr;
 	}
 
 }

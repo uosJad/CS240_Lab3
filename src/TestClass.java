@@ -15,12 +15,14 @@ public class TestClass {
 	
 	public static void day(int d, Store innout){
 		boolean shipToday = false;
-		
+		String delivery = "";
 		//day
 		for (int day = 0; day < d; day++){
 			
-			if (day%3 == 0) shipToday = true;
-			
+			if (day%3 == 0) {
+				shipToday = true;
+				delivery = "delivery";
+			}
 			
 			//hour
 			for (int hour = 0; hour < 24; hour++){
@@ -39,11 +41,11 @@ public class TestClass {
 			shipToday = false;
 			
 			System.out.println("---------------------");
-			System.out.println("March "+ day + ", 20XX:");
+			System.out.println("March "+ day + ", 20XX:" + delivery);
 			innout.printStatistics();
 			System.out.println("---------------------");
 			innout.resetStats();
-			
+			delivery = "";
 		}
 		
 		

@@ -1,6 +1,6 @@
 package Foods;
 
-public abstract class Ingredient {
+public class Ingredient {
 	private int expDays;
 	
 	public Ingredient(int i){

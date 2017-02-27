@@ -68,10 +68,9 @@ public final class QueueArray<T> implements QueueInterface<T> {
 		if (front == back){
 			result = true;
 		}
-		return false;
+		return result;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void clear() {
 		for (int i = 0; i < arr.length; i++){

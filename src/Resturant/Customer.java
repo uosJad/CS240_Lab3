@@ -7,7 +7,7 @@ public class Customer {
 	private MenuItem order;
 	
 	public Customer(){
-		int food = new Random().nextInt(5);
+		int food = new Random().nextInt(6);
 		if (food == 0){ // b
 			order = new Burger();
 		}

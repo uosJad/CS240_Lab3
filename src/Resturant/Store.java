@@ -2,6 +2,7 @@ package Resturant;
 
 import DS.QueueArray;
 import DS.QueueInterface;
+import DS.QueueNode;
 import Foods.*;
 import java.util.Random;
 
@@ -13,7 +14,7 @@ public class Store {
 
 	public Store() {
 		inv = new Inventory(); //TODO default
-		line = new QueueArray<Customer>();
+		line = new QueueNode<Customer>();
 		lostCustomerDay = 0;
 		countItemOne = 0;
 		countItemTwo = 0;
@@ -24,12 +25,14 @@ public class Store {
 	}
 	
 	public void lineCustomers(){
-		int people = new Random().nextInt(99) + 1;
+		int people = new Random().nextInt(100);
+		//System.out.println(people);
 		for(int i = 0; i < people; i++){
 			if(!line.enqueue(new Customer())){
 				lostCustomerDay++;
 			}
 		}
+		
 	}
 	
 	public void takeOrders(){
@@ -46,6 +49,7 @@ public class Store {
 				else if (food instanceof BurgerNoTomato) countItemSix++;
 			}
 		}
+		line.clear();
 	}
 	
 	public void shipIngredients(){
