@@ -5,6 +5,11 @@ import DS.StackInterface;
 import DS.StackArray;
 import java.util.Random;
 
+/**
+ * Inventory manager, To
+ * @author Jason Wu
+ *
+ */
 public class Inventory {
 	private StackInterface<Ingredient> bunStack;
 	private StackInterface<Ingredient> pattyStack;
@@ -33,14 +38,20 @@ public class Inventory {
 		wasteOnion = 0;
 	}
 	
-	
+	/**
+	 * Call at end of day. Sorts items based on age, increases age by 1 day, tosses items that expired
+	 */
 	public void endOfDay(){
 		sortItems(); //also ages
 		//ageItems();
 		tossItems();
 	}
 	
-	
+	/**
+	 * Makes specified item and removes Ingredients from inventory
+	 * @param item Menu Item to Create
+	 * @return true if made from ingredient stacks, else false
+	 */
 	public boolean makeItem(MenuItem item){
 		boolean r = true;
 		if (item instanceof Burger){
@@ -124,7 +135,10 @@ public class Inventory {
 	public boolean isEmptyOnion() {return onionStack.isEmpty();}
 	public boolean isEmptyCheese() {return cheeseStack.isEmpty();}
 	
-	public void sortItems(){
+	/**
+	 * Sorts each stack by age. increments age also
+	 */
+	private void sortItems(){
 		bunStack.setStack(SelectiveSort(bunStack), bunStack.getNumOfItems());
 		pattyStack.setStack(SelectiveSort(pattyStack), pattyStack.getNumOfItems());
 		lettuceStack.setStack(SelectiveSort(lettuceStack), lettuceStack.getNumOfItems());
@@ -132,26 +146,10 @@ public class Inventory {
 		onionStack.setStack(SelectiveSort(onionStack), onionStack.getNumOfItems());
 		cheeseStack.setStack(SelectiveSort(cheeseStack), cheeseStack.getNumOfItems());
 	}
-
-	/**
-	 * Returns array of ages in ingredient stack
-	 * @param a
-	 * @return
-	 */
-	public int[] getAgeArray(StackInterface<Ingredient> a){
-		Ingredient[] temp = a.toArray();
-		int[] ages = new int[temp.length];
-		for (int i = 0; i < temp.length; i++){
-			ages[i] = temp[i].getAge();
-		}
-		return ages;
-	}
-	
 	
 	/**
-	 * 
-	 * @param temp int array of ages of Ingredients in stack
-	 * @param stack Ingredient array
+	 * Sorts and ages items
+	 * @param s StackInterface of ingredient
 	 * @return
 	 */
 	private Ingredient[] SelectiveSort(StackInterface<Ingredient> s){
@@ -180,32 +178,8 @@ public class Inventory {
 	}
 	/// end sort
 	
-	/// Age
-	
-	private Ingredient[] age(StackInterface<Ingredient> s){
-		Ingredient[] temp = s.toArray();
-		int upper = s.getNumOfItems();
-		int c = 0;
-		for (int i = 0; i < upper; i++){
-			System.out.println(c++);
-			temp[i].decrementExp();
-		}
-		return temp;
-	}
-	
-	public void ageItems(){
-		bunStack.setStack(age(bunStack), bunStack.getNumOfItems());
-		pattyStack.setStack(age(pattyStack), pattyStack.getNumOfItems());
-		lettuceStack.setStack(age(lettuceStack), lettuceStack.getNumOfItems());
-		tomatoStack.setStack(age(tomatoStack), tomatoStack.getNumOfItems());
-		onionStack.setStack(age(onionStack), onionStack.getNumOfItems());
-		cheeseStack.setStack(age(cheeseStack), cheeseStack.getNumOfItems());
-	}
-	
-	///end age
-	
 	///toss
-	public void tossItems(){
+	private void tossItems(){
 		toss(bunStack);
 		toss(pattyStack);
 		toss(lettuceStack);
@@ -231,7 +205,10 @@ public class Inventory {
 		}
 	}
 	///end toss
-		
+	
+	/**
+	 * Increases each ingredient by 700-1000
+	 */
 	public void shipItems(){
 		Random rand = new Random();
 		int number;
@@ -261,6 +238,9 @@ public class Inventory {
 		}
 	}
 	
+	/**
+	 * Resets waste stats to 0
+	 */
 	public void resetStats(){
 		
 		wasteCheese = 0;

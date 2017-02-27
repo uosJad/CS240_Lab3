@@ -1,6 +1,11 @@
 package Foods;
 import DS.ListInterface;
 
+/**
+ * Contains a list of Ingredients
+ * @author Jason Wu
+ *
+ */
 public abstract class MenuItem {
 	private ListInterface<Ingredient> recipe;
 	

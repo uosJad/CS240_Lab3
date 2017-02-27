@@ -5,6 +5,11 @@ import DS.QueueNode;
 import Foods.*;
 import java.util.Random;
 
+/**
+ * Store manager. Contains an Inventory and Queue of customers. 
+ * @author Jason Wu
+ *
+ */
 public class Store {
 	private Inventory inv;
 	private QueueInterface<Customer> line;
@@ -23,6 +28,9 @@ public class Store {
 		countItemSix = 0;
 	}
 	
+	/**
+	 * Fills line with 1-100 customers. Line capacity is 50 so increases lost customers when overflow
+	 */
 	public void lineCustomers(){
 		int people = new Random().nextInt(100);
 		//System.out.println(people);
@@ -34,6 +42,9 @@ public class Store {
 		
 	}
 	
+	/**
+	 * Processes each customer's orders. Calls makeItems from inv.
+	 */
 	public void takeOrders(){
 		while(!line.isEmpty()){
 			Customer c = line.dequeue();
@@ -51,14 +62,23 @@ public class Store {
 		line.clear();
 	}
 	
+	/**
+	 * Ships ingredients to inventory
+	 */
 	public void shipIngredients(){
 		inv.shipItems();
 	}
 	
+	/**
+	 * Signals end of day to inventory
+	 */
 	public void endOfDay(){
 		inv.endOfDay();
 	}
 	
+	/**
+	 * Resets lost customers and item counts to = 0. Resets inventory stats too
+	 */
 	public void resetStats(){
 		lostCustomerDay = 0;
 		countItemOne = 0;
@@ -70,6 +90,9 @@ public class Store {
 		inv.resetStats();
 	}
 	
+	/**
+	 * Prints stats
+	 */
 	public void printStatistics(){
 		System.out.println("1): lostCustomerDay: " + this.lostCustomerDay);
 		System.out.println("2): wasteCheese: " + inv.getWasteCheese() + ", " +
@@ -78,12 +101,12 @@ public class Store {
 							"wasteLettuce: " + inv.getWasteLettuce() + ", " +
 							"wasteTomato: " + inv.getWasteTomato() + ", " +
 							"wasteOnion: " + inv.getWasteOnion());
-		System.out.println("3): countItemOne: " + this.countItemOne + ", " +
-							"countItemTwo: " + this.countItemTwo + ", " +
-							"countItemThree: " + this.countItemThree + ", " +
-							"countItemFour: " + this.countItemFour + ", " +
-							"countItemFive: " + this.countItemFive  + ", " +
-							"countItemSix: " + this.countItemSix);
+		System.out.println("3): countItemOne (Burger): " + this.countItemOne + ", " +
+							"countItemTwo (Cheese B.): " + this.countItemTwo + ", " +
+							"countItemThree (Vegan): " + this.countItemThree + ", " +
+							"countItemFour (B. No Onion): " + this.countItemFour + ", " +
+							"countItemFive (Ch.B. No Onion): " + this.countItemFive  + ", " +
+							"countItemSix (B. No Tomato): " + this.countItemSix);
 	}
 	
 	

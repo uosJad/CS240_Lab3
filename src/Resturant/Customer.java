@@ -3,6 +3,11 @@ import java.util.Random;
 
 import Foods.*;
 
+/**
+ * Customer for store. Has a random item order out of the 6 choices
+ * @author Jason Wu
+ *
+ */
 public class Customer {
 	private MenuItem order;
 	

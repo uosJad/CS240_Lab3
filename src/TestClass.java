@@ -1,6 +1,11 @@
 
 import Resturant.*;
 
+/**
+ * Simulates days of store
+ * @author Jason Wu
+ *
+ */
 public class TestClass {
 
 	public static void main(String[] args) {
@@ -43,8 +48,7 @@ public class TestClass {
 			innout.resetStats();
 			delivery = "";
 		}
-		
-		
+		System.out.println("End simulation");
 	}
 	
 }
