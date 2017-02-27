@@ -1,15 +1,19 @@
 package Foods;
-import DS.ListVector;
+import DS.ListInterface;
 
 public abstract class MenuItem {
-	private ListVector<Ingredient> recipe;
+	private ListInterface<Ingredient> recipe;
 	
-	public MenuItem(ListVector l){
+	public MenuItem(ListInterface<Ingredient> l){
 		recipe = l;
 	}
 	
 	public Ingredient[] toArray(){
-		Ingredient[] temp = new Ingredient[recipe.l
+		Ingredient[] temp = new Ingredient[recipe.getLength()];
+		for (int i = 0; i < temp.length; i++){
+			temp[i] = recipe.lookAt(i);
+		}
+		return temp;
 	}
 	
 }

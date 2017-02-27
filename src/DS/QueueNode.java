@@ -5,7 +5,7 @@ public final class QueueNode<T> implements QueueInterface<T> {
 	private Node front, back;
 	private int numOfItems;
 	
-	private static final int MAX_SIZE = 10;
+	private static final int MAX_SIZE = 50;
 	
 	public QueueNode(){
 		numOfItems = 0;

@@ -1,4 +1,7 @@
 package DS;
+import Foods.Ingredient;
+
+
 /**
 	Integer array implementation of sorting algorithms
 	@author Jason Wu

@@ -99,4 +99,6 @@ public interface ListInterface <T> {
 	 * @return an array that is a copy of the list
 	 */
 	public T[] lookAtAll();
+	
+	public int getLength();
 }

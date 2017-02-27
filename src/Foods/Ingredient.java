@@ -19,4 +19,8 @@ public abstract class Ingredient {
 		return result;
 	}
 	
+	public int getAge(){
+		return expDays;
+	}
+	
 }

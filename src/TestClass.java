@@ -7,10 +7,6 @@ import DS.*;
 public class TestClass {
 
 	public static void main(String[] args) {
-		Ingredient i = new Bun();
-		if (i instanceof Cheese){
-			System.out.println("aa");
-		}
-		
+		Ingredient i = new Bun();		
 	}
 }

@@ -105,4 +105,9 @@ public class ListVector<T> implements ListInterface<T>{
 		return true;
 	}
 
+	@Override
+	public int getLength() {
+		return v.size();
+	}
+
 }

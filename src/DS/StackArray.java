@@ -24,6 +24,11 @@ public final class StackArray<T> implements StackInterface<T>{
 		numOfItems = 0;
 	}
 	
+	public void setStack(T[] t){
+		arr = t;
+		numOfItems = t.length; 
+	}
+	
 	@Override
 	public void push(T newEntry) {
 		if (numOfItems < arr.length){
