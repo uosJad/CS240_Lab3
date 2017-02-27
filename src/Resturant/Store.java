@@ -15,6 +15,12 @@ public class Store {
 		inv = new Inventory(); //TODO default
 		line = new QueueArray<Customer>();
 		lostCustomerDay = 0;
+		countItemOne = 0;
+		countItemTwo = 0;
+		countItemThree = 0;
+		countItemFour = 0;
+		countItemFive = 0;
+		countItemSix = 0;
 	}
 	
 	public void lineCustomers(){
@@ -46,8 +52,35 @@ public class Store {
 		inv.shipItems();
 	}
 	
-	public void printStatistics(){
+	public void endOfDay(){
+		inv.endOfDay();
+	}
+	
+	public void resetStats(){
+		lostCustomerDay = 0;
+		countItemOne = 0;
+		countItemTwo = 0;
+		countItemThree = 0;
+		countItemFour = 0;
+		countItemFive = 0;
+		countItemSix = 0;
 		
+	}
+	
+	public void printStatistics(){
+		System.out.println("1): lostCustomerDay: " + this.lostCustomerDay);
+		System.out.println("2): wasteCheese: " + inv.getWasteCheese() + ", " +
+							"wasteBun: " + inv.getWasteBun() + ", " +
+							"wastePatty: " + inv.getWastePatty() + ", " +
+							"wasteLettuce: " + inv.getWasteLettuce() + ", " +
+							"wasteTomato: " + inv.getWasteTomato() + ", " +
+							"wasteOnion: " + inv.getWasteOnion());
+		System.out.println("3): countItemOne: " + this.countItemOne + ", " +
+							"countItemTwo: " + this.countItemTwo + ", " +
+							"countItemThree: " + this.countItemThree + ", " +
+							"countItemFour: " + this.countItemFour + ", " +
+							"countItemFive: " + this.countItemFive  + ", " +
+							"countItemSix: " + this.countItemSix);
 	}
 	
 	

@@ -255,5 +255,13 @@ public class Inventory {
 		}
 	}
 	
+	public void resetStats(){
+		wasteCheese = 0;
+		wasteBun = 0;
+		wastePatty = 0;
+		wasteLettuce = 0;
+		wasteTomato = 0; 
+		wasteOnion = 0;
+	}
 	
 }
