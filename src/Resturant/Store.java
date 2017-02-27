@@ -68,7 +68,7 @@ public class Store {
 		countItemFour = 0;
 		countItemFive = 0;
 		countItemSix = 0;
-		
+		inv.resetStats();
 	}
 	
 	public void printStatistics(){

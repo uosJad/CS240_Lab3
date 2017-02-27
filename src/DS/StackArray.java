@@ -1,4 +1,8 @@
 package DS;
+
+import java.lang.reflect.Array;
+import Foods.Ingredient;
+
 /**
  *
  * Array implementation of stack ADT
@@ -13,7 +17,7 @@ public final class StackArray<T> implements StackInterface<T>{
 	private static final int DEFAULT_SIZE = 10;
 	
 	public StackArray(){
-		this(10000000);
+		this(10000);
 	}
 	
 	public StackArray(int s){
@@ -24,9 +28,9 @@ public final class StackArray<T> implements StackInterface<T>{
 		numOfItems = 0;
 	}
 	
-	public void setStack(T[] t){
+	public void setStack(T[] t, int n){
 		arr = t;
-		numOfItems = t.length; 
+		numOfItems = n; 
 	}
 	
 	public int getNumOfItems(){
@@ -79,11 +83,11 @@ public final class StackArray<T> implements StackInterface<T>{
 	 */
 	public T[] toArray(){
 		@SuppressWarnings("unchecked")
-		T[] temp = (T[])new Object[arr.length];
+		T[] temp = (T[]) Array.newInstance(Ingredient.class, arr.length);
 		for (int i = 0; i < arr.length; i++){
 			temp[i] = arr[i];
 		}
-		return arr;
+		return temp;
 	}
 
 }

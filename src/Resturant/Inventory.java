@@ -35,8 +35,8 @@ public class Inventory {
 	
 	
 	public void endOfDay(){
-		sortItems();
-		ageItems();
+		sortItems(); //also ages
+		//ageItems();
 		tossItems();
 	}
 	
@@ -125,12 +125,12 @@ public class Inventory {
 	public boolean isEmptyCheese() {return cheeseStack.isEmpty();}
 	
 	public void sortItems(){
-		bunStack.setStack(SelectiveSort(getAgeArray(bunStack),bunStack.toArray()));
-		pattyStack.setStack(SelectiveSort(getAgeArray(pattyStack),pattyStack.toArray()));
-		lettuceStack.setStack(SelectiveSort(getAgeArray(lettuceStack),lettuceStack.toArray()));
-		tomatoStack.setStack(SelectiveSort(getAgeArray(tomatoStack),tomatoStack.toArray()));
-		onionStack.setStack(SelectiveSort(getAgeArray(onionStack),onionStack.toArray()));
-		cheeseStack.setStack(SelectiveSort(getAgeArray(cheeseStack),cheeseStack.toArray()));
+		bunStack.setStack(SelectiveSort(bunStack), bunStack.getNumOfItems());
+		pattyStack.setStack(SelectiveSort(pattyStack), pattyStack.getNumOfItems());
+		lettuceStack.setStack(SelectiveSort(lettuceStack), lettuceStack.getNumOfItems());
+		tomatoStack.setStack(SelectiveSort(tomatoStack), tomatoStack.getNumOfItems());
+		onionStack.setStack(SelectiveSort(onionStack), onionStack.getNumOfItems());
+		cheeseStack.setStack(SelectiveSort(cheeseStack), cheeseStack.getNumOfItems());
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class Inventory {
 	 * @param a
 	 * @return
 	 */
-	public int[] getAgeArray(StackInterface<? extends Ingredient> a){
+	public int[] getAgeArray(StackInterface<Ingredient> a){
 		Ingredient[] temp = a.toArray();
 		int[] ages = new int[temp.length];
 		for (int i = 0; i < temp.length; i++){
@@ -154,18 +154,22 @@ public class Inventory {
 	 * @param stack Ingredient array
 	 * @return
 	 */
-	private Ingredient[] SelectiveSort(int[] temp, Ingredient[] stack){
-		
+	private Ingredient[] SelectiveSort(StackInterface<Ingredient> s){
+		Ingredient[] stack = s.toArray();
+		int upper = s.getNumOfItems();
+		int c = 0;
 		int largest;
-		for (int i = 0; i < temp.length; i++){
+		for (int i = 0; i < upper; i++){
 			largest = i;
-			for (int j = i+1; j < temp.length; j++){
+			//System.out.println(c++);
+			for (int j = i+1; j < upper; j++){
+				
 				// check all for least, swap least to i
-				if (temp[j] > temp[largest])
+				if (stack[j].getAge() > stack[largest].getAge())
 					largest = j;
 			}
-			swap(temp,i,largest);
 			swap(stack,i,largest);
+			stack[i].decrementExp();
 		}
 		return stack;
 	}
@@ -184,20 +188,24 @@ public class Inventory {
 	
 	/// Age
 	
-	private Ingredient[] age(Ingredient[] temp){
-		for (int i = 0; i < temp.length; i++){
+	private Ingredient[] age(StackInterface<Ingredient> s){
+		Ingredient[] temp = s.toArray();
+		int upper = s.getNumOfItems();
+		int c = 0;
+		for (int i = 0; i < upper; i++){
+			System.out.println(c++);
 			temp[i].decrementExp();
 		}
 		return temp;
 	}
 	
 	public void ageItems(){
-		bunStack.setStack(age(bunStack.toArray()));
-		pattyStack.setStack(age(pattyStack.toArray()));
-		lettuceStack.setStack(age(lettuceStack.toArray()));
-		tomatoStack.setStack(age(tomatoStack.toArray()));
-		onionStack.setStack(age(onionStack.toArray()));
-		cheeseStack.setStack(age(cheeseStack.toArray()));
+		bunStack.setStack(age(bunStack), bunStack.getNumOfItems());
+		pattyStack.setStack(age(pattyStack), pattyStack.getNumOfItems());
+		lettuceStack.setStack(age(lettuceStack), lettuceStack.getNumOfItems());
+		tomatoStack.setStack(age(tomatoStack), tomatoStack.getNumOfItems());
+		onionStack.setStack(age(onionStack), onionStack.getNumOfItems());
+		cheeseStack.setStack(age(cheeseStack), cheeseStack.getNumOfItems());
 	}
 	
 	///end age
@@ -213,8 +221,11 @@ public class Inventory {
 	}
 	
 	private void toss(StackInterface<Ingredient> s){
+		int c =0;
 		while (!s.isEmpty()){
+			//System.out.println(c++);
 			if (s.peek().isExpired()){
+				
 				Ingredient trash = s.pop();
 				if (trash instanceof Bun) this.wasteBun++;
 				else if (trash instanceof Patty) this.wastePatty++;
@@ -229,28 +240,30 @@ public class Inventory {
 	///end toss
 		
 	public void shipItems(){
-		int number = new Random().nextInt(300) + 700;
 		Random rand = new Random();
-		int food;
-		for (int i = 0; i < number; i++){
-			food = rand.nextInt(6);
-			if (food == 0){ // bun
-				bunStack.push(new Bun());
-			}
-			else if (food == 1){ // patty
-				pattyStack.push(new Patty());
-			}
-			else if (food == 2){ // lettuce
-				lettuceStack.push(new Lettuce());
-			}
-			else if (food == 3){ // tomato
-				tomatoStack.push(new Tomato());
-			}
-			else if (food == 4){ // onion
-				onionStack.push(new Onion());
-			}
-			else if (food == 5){ //cheese
-				cheeseStack.push(new Cheese());
+		int number;
+
+		for (int food = 0; food < 6; food++){
+			number = rand.nextInt(300) + 700;
+			for (int i = 0; i < number; i++){
+				if (food == 0){ // bun
+					bunStack.push(new Bun());
+				}
+				else if (food == 1){ // patty
+					pattyStack.push(new Patty());
+				}
+				else if (food == 2){ // lettuce
+					lettuceStack.push(new Lettuce());
+				}
+				else if (food == 3){ // tomato
+					tomatoStack.push(new Tomato());
+				}
+				else if (food == 4){ // onion
+					onionStack.push(new Onion());
+				}
+				else if (food == 5){ //cheese
+					cheeseStack.push(new Cheese());
+				}
 			}
 		}
 	}
