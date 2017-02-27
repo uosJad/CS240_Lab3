@@ -1,14 +1,35 @@
 package Resturant;
 import java.util.Random;
 
+import Foods.*;
+
 public class Customer {
-	private int order;
+	private MenuItem order;
 	
 	public Customer(){
-		order = new Random().nextInt(5);
+		int food = new Random().nextInt(5);
+		if (food == 0){ // b
+			order = new Burger();
+		}
+		else if (food == 1){ // cb
+			order = new CheeseBurger();
+		}
+		else if (food == 2){ // v
+			order = new VeganLettuceWrapBurger();
+		}
+		else if (food == 3){ // bnoo
+			order = new BurgerNoOnion();
+		}
+		else if (food == 4){ // cbnoo
+			order = new CheeseBurgerNoOnion();
+		}
+		else if (food == 5){ //bnot
+			order = new BurgerNoTomato();
+		}
 	}
 	
-	public int getOrder(){
+	public MenuItem getOrder(){
 		return order;
 	}
+	
 }

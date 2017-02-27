@@ -6,7 +6,7 @@ public final class QueueArray<T> implements QueueInterface<T> {
 	private int front;
 	private int back;
 	
-	private static final int MAX_SIZE = 10;
+	private static final int MAX_SIZE = 50;
 	
 	@SuppressWarnings("unchecked")
 	public QueueArray(){
@@ -16,7 +16,8 @@ public final class QueueArray<T> implements QueueInterface<T> {
 	}
 	
 	@Override
-	public void enqueue(T newEntry) {
+	public boolean enqueue(T newEntry) {
+		boolean r = true;
 		if ((back+1)%arr.length != front){ // if not full
 			arr[back] = newEntry;
 			//System.out.print(back+": ");
@@ -24,8 +25,9 @@ public final class QueueArray<T> implements QueueInterface<T> {
 			if (back == arr.length){
 				back = 0; // loopsback
 			}
-			
 		}
+		else r = false;
+		return r;
 		
 	}
 

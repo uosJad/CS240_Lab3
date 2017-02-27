@@ -33,54 +33,96 @@ public class Inventory {
 		wasteOnion = 0;
 	}
 	
+	
 	public void endOfDay(){
 		sortItems();
 		ageItems();
 		tossItems();
 	}
 	
-	public boolean popBun(){
-		boolean r = false;
-		if (!bunStack.isEmpty()) bunStack.pop();
+	
+	public boolean makeItem(MenuItem item){
+		boolean r = true;
+		if (item instanceof Burger){
+			if (!bunStack.isEmpty() && !pattyStack.isEmpty() && !lettuceStack.isEmpty() &&
+				!tomatoStack.isEmpty() && !onionStack.isEmpty()){
+				bunStack.pop();
+				pattyStack.pop();
+				lettuceStack.pop();
+				tomatoStack.pop();
+				onionStack.pop();
+			}
+			else r = false;
+		}
+		else if (item instanceof CheeseBurger){
+			if (!bunStack.isEmpty() && !pattyStack.isEmpty() && !lettuceStack.isEmpty() &&
+				!tomatoStack.isEmpty() && !onionStack.isEmpty() && !cheeseStack.isEmpty()){
+				bunStack.pop();
+				pattyStack.pop();
+				lettuceStack.pop();
+				tomatoStack.pop();
+				onionStack.pop();
+				cheeseStack.pop();
+			}
+			else r = false;
+		}
+		else if (item instanceof VeganLettuceWrapBurger){
+			if (lettuceStack.getNumOfItems() >= 2 &&
+				!tomatoStack.isEmpty() && !onionStack.isEmpty()){
+				lettuceStack.pop();
+				lettuceStack.pop();
+				tomatoStack.pop();
+				onionStack.pop();
+			}
+			else r = false;
+		}
+		else if (item instanceof BurgerNoOnion){
+			if (!bunStack.isEmpty() && !pattyStack.isEmpty() && !lettuceStack.isEmpty() &&
+				!tomatoStack.isEmpty()){
+				bunStack.pop();
+				pattyStack.pop();
+				lettuceStack.pop();
+				tomatoStack.pop();
+			}
+			else r = false;
+		}
+		else if (item instanceof CheeseBurgerNoOnion){
+			if (!bunStack.isEmpty() && !pattyStack.isEmpty() && !lettuceStack.isEmpty() &&
+				!tomatoStack.isEmpty() && !cheeseStack.isEmpty()){
+				bunStack.pop();
+				pattyStack.pop();
+				lettuceStack.pop();
+				tomatoStack.pop();
+				cheeseStack.pop();
+			}
+			else r = false;
+		}
+		else if (item instanceof BurgerNoTomato){
+			if (!bunStack.isEmpty() && !pattyStack.isEmpty() && !lettuceStack.isEmpty() &&
+				!onionStack.isEmpty()){
+				bunStack.pop();
+				pattyStack.pop();
+				lettuceStack.pop();
+				onionStack.pop();
+			}
+			else r = false;
+		}
 		return r;
 	}
-	
-	public boolean popPatty(){
-		boolean r = false;
-		if (!pattyStack.isEmpty()) pattyStack.pop();
-		return r;
-	}
-	
-	public boolean popLettuce(){
-		boolean r = false;
-		if (!lettuceStack.isEmpty()) lettuceStack.pop();
-		return r;
-	}
-	
-	public boolean popTomato(){
-		boolean r = false;
-		if (!tomatoStack.isEmpty()) tomatoStack.pop();
-		return r;
-	}
-	
-	public boolean popOnion(){
-		boolean r = false;
-		if (!onionStack.isEmpty()) onionStack.pop();
-		return r;
-	}
-	
-	public boolean popCheese(){
-		boolean r = false;
-		if (!cheeseStack.isEmpty()) cheeseStack.pop();
-		return r;
-	}
-	
+
 	public int getWasteBun() {return wasteBun;}
 	public int getWastePatty() {return wastePatty;}
 	public int getWasteLettuce() {return wasteLettuce;}
 	public int getWasteTomato() {return wasteTomato;}
 	public int getWasteOnion() {return wasteOnion;}
 	public int getWasteCheese() {return wasteCheese;}
+	
+	public boolean isEmptyBun() {return bunStack.isEmpty();}
+	public boolean isEmptyPatty() {return pattyStack.isEmpty();}
+	public boolean isEmptyLettuce() {return lettuceStack.isEmpty();}
+	public boolean isEmptyTomato() {return tomatoStack.isEmpty();}
+	public boolean isEmptyOnion() {return onionStack.isEmpty();}
+	public boolean isEmptyCheese() {return cheeseStack.isEmpty();}
 	
 	public void sortItems(){
 		bunStack.setStack(SelectiveSort(getAgeArray(bunStack),bunStack.toArray()));
@@ -185,7 +227,7 @@ public class Inventory {
 		}
 	}
 	///end toss
-	
+		
 	public void shipItems(){
 		int number = new Random().nextInt(300) + 700;
 		Random rand = new Random();

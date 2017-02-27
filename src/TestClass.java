@@ -7,6 +7,20 @@ import DS.*;
 public class TestClass {
 
 	public static void main(String[] args) {
-		Ingredient i = new Bun();		
+			
 	}
+	
+	
+	/**
+	 * Elapses a day
+	 * @param i
+	 */
+	public void day(int i){
+		
+	}
+	
+	
+	
+	
+	
 }
