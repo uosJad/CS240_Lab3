@@ -18,6 +18,7 @@ public class TestClass {
 	public static void day(int d, Store innout){
 		boolean shipToday = false;
 		String delivery = "";
+		System.out.println("<<Start Simulation>>");
 		//day elapsed
 		for (int day = 0; day < d; day++){
 			
