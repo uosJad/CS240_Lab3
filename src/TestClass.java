@@ -1,7 +1,4 @@
-import java.util.Random;
 
-import Foods.*;
-import DS.*;
 import Resturant.*;
 
 public class TestClass {
@@ -16,15 +13,15 @@ public class TestClass {
 	public static void day(int d, Store innout){
 		boolean shipToday = false;
 		String delivery = "";
-		//day
+		//day elapsed
 		for (int day = 0; day < d; day++){
 			
 			if (day%3 == 0) {
 				shipToday = true;
-				delivery = "delivery";
+				delivery = "(delivery day)";
 			}
 			
-			//hour
+			//hour elapsed
 			for (int hour = 0; hour < 24; hour++){
 				if (shipToday && hour == 9){
 					innout.shipIngredients();
@@ -40,8 +37,7 @@ public class TestClass {
 			
 			shipToday = false;
 			
-			System.out.println("---------------------");
-			System.out.println("March "+ day + ", 20XX:" + delivery);
+			System.out.println("March "+ (day+1) + ", 20XX: " + delivery);
 			innout.printStatistics();
 			System.out.println("---------------------");
 			innout.resetStats();

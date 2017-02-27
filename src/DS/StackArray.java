@@ -14,7 +14,7 @@ public final class StackArray<T> implements StackInterface<T>{
 	private T[] arr;
 	private int numOfItems; // numOfItems - 1 = index of last item in
 	
-	private static final int DEFAULT_SIZE = 10;
+	//private static final int DEFAULT_SIZE = 10;
 	
 	public StackArray(){
 		this(10000);

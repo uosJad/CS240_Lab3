@@ -157,7 +157,6 @@ public class Inventory {
 	private Ingredient[] SelectiveSort(StackInterface<Ingredient> s){
 		Ingredient[] stack = s.toArray();
 		int upper = s.getNumOfItems();
-		int c = 0;
 		int largest;
 		for (int i = 0; i < upper; i++){
 			largest = i;
@@ -174,11 +173,6 @@ public class Inventory {
 		return stack;
 	}
 	
-	private void swap(int[] array, int a, int b){
-		int temp = array[a];
-		array[a] = array[b];
-		array[b] = temp;
-	}
 	private void swap(Ingredient[] array, int a, int b){
 		Ingredient temp = array[a];
 		array[a] = array[b];
@@ -221,7 +215,6 @@ public class Inventory {
 	}
 	
 	private void toss(StackInterface<Ingredient> s){
-		int c =0;
 		while (!s.isEmpty()){
 			//System.out.println(c++);
 			if (s.peek().isExpired()){

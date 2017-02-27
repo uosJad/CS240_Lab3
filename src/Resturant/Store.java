@@ -1,6 +1,5 @@
 package Resturant;
 
-import DS.QueueArray;
 import DS.QueueInterface;
 import DS.QueueNode;
 import Foods.*;
